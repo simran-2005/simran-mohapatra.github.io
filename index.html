@@ -473,6 +473,33 @@ nav {
 .btile-group-label{font-size:0.67rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.06em;font-family:var(--f-sans);font-weight:600;margin-bottom:0.4rem}
 .ptag-more{opacity:0.55;font-style:italic}
 
+/* ── SHOW MORE / GRADIENT ───────────────────────── */
+.btile-body-wrap{position:relative}
+.btile-body-wrap.collapsed .btile-body{
+  max-height:210px;overflow:hidden;
+}
+.btile-fade{
+  position:absolute;bottom:0;left:0;right:0;height:90px;
+  background:linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events:none;
+  transition:opacity .3s var(--ease);
+}
+[data-theme="dark"] .btile-fade{
+  background:linear-gradient(to bottom, transparent, var(--surface));
+}
+.btile-body-wrap:not(.collapsed) .btile-fade{opacity:0;pointer-events:none}
+.btile-showmore{
+  display:flex;align-items:center;justify-content:center;gap:0.4rem;
+  width:100%;padding:0.65rem 1.4rem 1rem;
+  font-family:var(--f-disp);font-size:0.74rem;font-weight:700;
+  color:var(--tc,var(--ac1));
+  background:none;border:none;cursor:pointer;
+  transition:opacity .15s;
+}
+.btile-showmore:hover{opacity:0.7}
+.btile-showmore svg{width:13px;height:13px;stroke:currentColor;fill:none;flex-shrink:0;transition:transform .35s var(--ease)}
+.btile-body-wrap:not(.collapsed) .btile-showmore svg{transform:rotate(180deg)}
+
 /* ── PROJECTS ───────────────────────────────────── */
 .proj-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:0.85rem}
 .proj-card{
@@ -1237,6 +1264,7 @@ footer {
     <!-- Production tile -->
     <div class="btile" style="--tc:var(--ac1)">
       <div class="btile-head">⚡ Production / Hands-On</div>
+      <div class="btile-body-wrap collapsed">
       <div class="btile-body">
         <div class="btile-group">
           <div class="btile-group-label">Azure</div>
@@ -1288,11 +1316,17 @@ footer {
           </div>
         </div>
       </div>
+      <div class="btile-fade"></div>
+      <button class="btile-showmore" onclick="toggleSkillTile(this)">
+        Show more <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      </div>
     </div>
 
     <!-- Project Exposure tile -->
     <div class="btile" style="--tc:var(--ac3)">
       <div class="btile-head">⎈ Project Exposure</div>
+      <div class="btile-body-wrap collapsed">
       <div class="btile-body">
         <div class="btile-group">
           <div class="btile-group-label">AWS</div>
@@ -1351,6 +1385,11 @@ footer {
             <span class="btag">Neo4j</span>
           </div>
         </div>
+      </div>
+      <div class="btile-fade"></div>
+      <button class="btile-showmore" onclick="toggleSkillTile(this)">
+        Show more <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
       </div>
     </div>
 
@@ -1713,6 +1752,13 @@ function closeProjModal(e){
   if(e.target===document.getElementById('projModal'))closeProj();
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCert();closeProj();}});
+
+/* ── skill tile show-more ───────────────────────── */
+function toggleSkillTile(btn){
+  const wrap=btn.closest('.btile-body-wrap');
+  const collapsed=wrap.classList.toggle('collapsed');
+  btn.childNodes[0].textContent=collapsed?'Show more ':'Show less ';
+}
 
 /* form handled by Formspree — no JS needed */
 </script>
