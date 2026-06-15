@@ -397,6 +397,7 @@ nav {
   gap:1rem;
 }
 .btile {
+  min-height:180px;
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:14px;
@@ -438,9 +439,39 @@ nav {
   color:var(--tc, var(--ac1));
   font-weight:700;
 }
+/* ── CORE STRENGTHS ROW ─────────────────────────── */
+.strengths-row{display:flex;flex-wrap:wrap;gap:0.55rem;margin-bottom:1.1rem}
+.strength-pill{
+  font-family:var(--f-disp);font-size:0.76rem;font-weight:700;
+  padding:0.42rem 1.05rem;border-radius:999px;
+  background:color-mix(in srgb, var(--ac1) 11%, transparent);
+  border:1.5px solid color-mix(in srgb, var(--ac1) 28%, transparent);
+  color:var(--ac1);
+}
+/* ── SKILL LEGEND ───────────────────────────────── */
+.skill-legend{
+  display:flex;gap:1.4rem;align-items:center;
+  margin-bottom:1.1rem;flex-wrap:wrap;
+}
+.legend-item{display:flex;align-items:center;gap:0.38rem;
+  font-size:0.72rem;color:var(--muted);font-family:var(--f-sans)}
+.legend-swatch-filled{
+  width:10px;height:10px;border-radius:3px;flex-shrink:0;
+  background:color-mix(in srgb, var(--ac1) 15%, transparent);
+  border:1.5px solid color-mix(in srgb, var(--ac1) 32%, transparent);
+}
+.legend-swatch-outline{
+  width:10px;height:10px;border-radius:3px;flex-shrink:0;
+  background:transparent;border:1.5px solid var(--border2);
+}
 .btag-hi:hover{
   background:color-mix(in srgb, var(--tc, var(--ac1)) 20%, transparent);
 }
+.bento-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.btile-group{margin-bottom:0.85rem}
+.btile-group:last-child{margin-bottom:0}
+.btile-group-label{font-size:0.67rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.06em;font-family:var(--f-sans);font-weight:600;margin-bottom:0.4rem}
+.ptag-more{opacity:0.55;font-style:italic}
 
 /* ── PROJECTS ───────────────────────────────────── */
 .proj-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:0.85rem}
@@ -796,9 +827,9 @@ footer {
     <li><a href="#experience">Experience</a></li>
     <li><a href="#cases">Cases</a></li>
     <li><a href="#education">Education</a></li>
-    <li><a href="#skills">Stack</a></li>
     <li><a href="#certificates">Certs</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Stack</a></li>
     <li><a href="#leadership">Leadership</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1067,131 +1098,6 @@ footer {
   </div>
 </section>
 
-<!-- ── SKILLS & STACK ────────────────────────────── -->
-<section id="skills" class="sec">
-  <div class="sec-label">Skills &amp; Stack</div>
-  <h2 class="sec-head rev">The full toolkit, <em>battle-tested.</em></h2>
-  <p class="sec-sub rev d1">Tools below reflect production experience, academic projects, and hands-on project exposure.</p>
-
-  <div class="bento rev d2">
-
-    <!-- Cloud Platforms — blue, wide -->
-    <div class="btile btile-w2" style="--tc:var(--ac1)">
-      <div class="btile-head">☁ Cloud Platforms</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">AWS EKS</span>
-          <span class="btag btag-hi">ECS Fargate</span>
-          <span class="btag btag-hi">EC2 / ASG</span>
-          <span class="btag btag-hi">S3</span>
-          <span class="btag btag-hi">Lambda</span>
-          <span class="btag btag-hi">SNS / SQS</span>
-          <span class="btag btag-hi">CloudFront</span>
-          <span class="btag btag-hi">Route 53</span>
-          <span class="btag btag-hi">RDS</span>
-          <span class="btag btag-hi">ALB</span>
-          <span class="btag">Azure IaaS</span>
-          <span class="btag">Azure VNet · NSG</span>
-          <span class="btag">Azure RBAC</span>
-          <span class="btag">Azure Monitor</span>
-          <span class="btag">Azure IoT Hub</span>
-          <span class="btag">ARM Templates</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Security — purple -->
-    <div class="btile" style="--tc:var(--ac4)">
-      <div class="btile-head">🔐 Security &amp; Identity</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">IAM</span>
-          <span class="btag btag-hi">RBAC</span>
-          <span class="btag">VPC Flow Logs</span>
-          <span class="btag">CloudTrail</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Containers — teal -->
-    <div class="btile" style="--tc:var(--ac3)">
-      <div class="btile-head">⎈ Cloud-Native Project Exposure</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">Kubernetes</span>
-          <span class="btag btag-hi">KEDA</span>
-          <span class="btag btag-hi">Docker</span>
-          <span class="btag btag-hi">Helm</span>
-          <span class="btag">kubectl</span>
-          <span class="btag">eksctl</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- IaC & CI/CD — orange -->
-    <div class="btile" style="--tc:var(--ac2)">
-      <div class="btile-head">⚙ IaC &amp; CI/CD</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">Terraform</span>
-          <span class="btag btag-hi">GitHub Actions</span>
-          <span class="btag btag-hi">CloudFormation</span>
-          <span class="btag">ARM Templates</span>
-          <span class="btag">ECR</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Languages — blue -->
-    <div class="btile" style="--tc:var(--ac1)">
-      <div class="btile-head">{ } Languages &amp; Tools</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">Python</span>
-          <span class="btag btag-hi">PowerShell</span>
-          <span class="btag">Bash</span>
-          <span class="btag">Linux</span>
-          <span class="btag">Claude API</span>
-          <span class="btag">Flask</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Observability — teal, wide -->
-    <div class="btile btile-w2" style="--tc:var(--ac3)">
-      <div class="btile-head">📊 Observability &amp; Monitoring</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">CloudWatch</span>
-          <span class="btag btag-hi">Alertmanager</span>
-          <span class="btag btag-hi">Container Insights</span>
-          <span class="btag">CloudTrail</span>
-          <span class="btag">VPC Flow Logs</span>
-          <span class="btag">SNS/SQS Alarms</span>
-          <span class="btag">Azure Monitor</span>
-          <span class="btag">ServiceNow ITSM</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Databases — orange -->
-    <div class="btile" style="--tc:var(--ac2)">
-      <div class="btile-head">🗄 Databases</div>
-      <div class="btile-body">
-        <div class="btile-tags">
-          <span class="btag btag-hi">PostgreSQL</span>
-          <span class="btag btag-hi">RDS Multi-AZ</span>
-          <span class="btag">MongoDB</span>
-          <span class="btag">Neo4j</span>
-          <span class="btag">SQLite</span>
-          <span class="btag">EFS</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <!-- ── CERTIFICATES ──────────────────────────────── -->
 <section id="certificates" class="sec">
   <div class="sec-label">Certifications</div>
@@ -1248,7 +1154,7 @@ footer {
       <div class="proj-card-type">Infrastructure as Code · Terraform</div>
       <div class="proj-card-tags">
         <span class="ptag">Terraform</span><span class="ptag">EC2</span><span class="ptag">RDS</span>
-        <span class="ptag">ALB</span><span class="ptag">ASG</span><span class="ptag">CloudWatch</span><span class="ptag">VPC</span>
+        <span class="ptag">ALB</span><span class="ptag">ASG</span><span class="ptag ptag-more">+2 more</span>
       </div>
       <div class="proj-card-cta">View details →</div>
     </div>
@@ -1259,7 +1165,7 @@ footer {
       <div class="proj-card-type">Observability Lead · ECS Fargate · Group Project</div>
       <div class="proj-card-tags">
         <span class="ptag">ECS Fargate</span><span class="ptag">Terraform</span><span class="ptag">CloudTrail</span>
-        <span class="ptag">VPC Flow Logs</span><span class="ptag">Secrets Manager</span><span class="ptag">Flask</span>
+        <span class="ptag">VPC Flow Logs</span><span class="ptag">Secrets Manager</span><span class="ptag ptag-more">+1 more</span>
       </div>
       <div class="proj-card-cta">View details →</div>
     </div>
@@ -1271,7 +1177,7 @@ footer {
       <div class="proj-card-tags">
         <span class="ptag">EKS</span><span class="ptag">Terraform</span><span class="ptag">Karpenter</span>
         <span class="ptag">RDS Multi-AZ</span><span class="ptag">GitHub Actions</span>
-        <span class="ptag">Prometheus</span><span class="ptag">Grafana</span><span class="ptag">KMS</span>
+        <span class="ptag ptag-more">+4 more</span>
       </div>
       <div class="proj-card-cta">View details →</div>
     </div>
@@ -1282,8 +1188,7 @@ footer {
       <div class="proj-card-type">Event-Driven Infrastructure · AWS EKS · KEDA</div>
       <div class="proj-card-tags">
         <span class="ptag">EKS</span><span class="ptag">SNS</span><span class="ptag">SQS</span>
-        <span class="ptag">KEDA</span><span class="ptag">Helm</span><span class="ptag">CloudWatch</span>
-        <span class="ptag">IAM</span><span class="ptag">eksctl</span>
+        <span class="ptag">KEDA</span><span class="ptag">Helm</span><span class="ptag ptag-more">+3 more</span>
       </div>
       <div class="proj-card-cta">View details →</div>
     </div>
@@ -1308,6 +1213,145 @@ footer {
         <span class="ptag">Neo4j</span><span class="ptag">Python</span><span class="ptag">Docker Compose</span>
       </div>
       <div class="proj-card-cta">View details →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SKILLS & STACK ────────────────────────────── -->
+<section id="skills" class="sec">
+  <div class="sec-label">Skills &amp; Stack</div>
+  <h2 class="sec-head rev">Infrastructure toolkit, <em>from production support to project builds.</em></h2>
+  <p class="sec-sub rev d1">Strongest hands-on experience is in Azure production operations, incident response, monitoring, and automation. AWS, Terraform, and cloud-native tools are shown through project-based infrastructure work.</p>
+
+  <!-- Core Strengths pills -->
+  <div class="strengths-row rev d2">
+    <span class="strength-pill">Azure Production Operations</span>
+    <span class="strength-pill">Incident Response</span>
+    <span class="strength-pill">Infrastructure as Code</span>
+    <span class="strength-pill">Cloud Automation</span>
+  </div>
+
+  <div class="bento-2 rev d2">
+
+    <!-- Production tile -->
+    <div class="btile" style="--tc:var(--ac1)">
+      <div class="btile-head">⚡ Production / Hands-On</div>
+      <div class="btile-body">
+        <div class="btile-group">
+          <div class="btile-group-label">Azure</div>
+          <div class="btile-tags">
+            <span class="btag btag-hi">Azure VMs</span>
+            <span class="btag btag-hi">VNets</span>
+            <span class="btag btag-hi">NSGs</span>
+            <span class="btag btag-hi">VPN Gateway</span>
+            <span class="btag btag-hi">RBAC</span>
+            <span class="btag btag-hi">Azure Monitor</span>
+            <span class="btag btag-hi">ARM Templates</span>
+            <span class="btag btag-hi">Windows Server</span>
+            <span class="btag btag-hi">Linux</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">IaC &amp; Scripting</div>
+          <div class="btile-tags">
+            <span class="btag btag-hi">Terraform</span>
+            <span class="btag btag-hi">GitHub Actions</span>
+            <span class="btag btag-hi">PowerShell</span>
+            <span class="btag btag-hi">Python</span>
+            <span class="btag btag-hi">Bash</span>
+            <span class="btag btag-hi">Linux CLI</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Monitoring &amp; IR</div>
+          <div class="btile-tags">
+            <span class="btag btag-hi">Azure Monitor</span>
+            <span class="btag btag-hi">ServiceNow ITSM</span>
+            <span class="btag btag-hi">Confluence Runbooks</span>
+            <span class="btag btag-hi">CloudWatch</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Security</div>
+          <div class="btile-tags">
+            <span class="btag btag-hi">IAM</span>
+            <span class="btag btag-hi">RBAC</span>
+            <span class="btag btag-hi">NSGs</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Databases</div>
+          <div class="btile-tags">
+            <span class="btag btag-hi">PostgreSQL</span>
+            <span class="btag btag-hi">RDS Multi-AZ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Exposure tile -->
+    <div class="btile" style="--tc:var(--ac3)">
+      <div class="btile-head">⎈ Project Exposure</div>
+      <div class="btile-body">
+        <div class="btile-group">
+          <div class="btile-group-label">AWS</div>
+          <div class="btile-tags">
+            <span class="btag">EC2</span>
+            <span class="btag">ECS Fargate</span>
+            <span class="btag">S3</span>
+            <span class="btag">Lambda</span>
+            <span class="btag">RDS</span>
+            <span class="btag">ALB / ASG</span>
+            <span class="btag">SNS / SQS</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">IaC</div>
+          <div class="btile-tags">
+            <span class="btag">CloudFormation</span>
+            <span class="btag">ARM Templates</span>
+            <span class="btag">ECR</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Cloud-Native</div>
+          <div class="btile-tags">
+            <span class="btag">Docker</span>
+            <span class="btag">Kubernetes</span>
+            <span class="btag">KEDA</span>
+            <span class="btag">Helm</span>
+            <span class="btag">kubectl</span>
+            <span class="btag">eksctl</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Monitoring</div>
+          <div class="btile-tags">
+            <span class="btag">CloudTrail</span>
+            <span class="btag">VPC Flow Logs</span>
+            <span class="btag">SNS Alarms</span>
+            <span class="btag">Prometheus</span>
+            <span class="btag">Grafana</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Security</div>
+          <div class="btile-tags">
+            <span class="btag">Security Groups</span>
+            <span class="btag">Secrets Manager</span>
+            <span class="btag">KMS</span>
+          </div>
+        </div>
+        <div class="btile-group">
+          <div class="btile-group-label">Databases</div>
+          <div class="btile-tags">
+            <span class="btag">MongoDB</span>
+            <span class="btag">SQLite</span>
+            <span class="btag">Neo4j</span>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -1440,10 +1484,7 @@ footer {
     <div class="cv-block rev d1" id="cv-form">
       <div class="cv-title">Request a Tailored Resume</div>
       <div class="cv-sub">Drop the role details below — I'll send over a resume aligned to the job description.</div>
-      <form class="cv-form" action="https://formsubmit.co/simran.mohapatra.20@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Resume Request — Simran Mohapatra Portfolio"/>
-        <input type="hidden" name="_template" value="table"/>
-        <input type="hidden" name="_captcha" value="false"/>
+      <form class="cv-form" action="https://formspree.io/f/xjgdlpoa" method="POST">
         <div class="cv-2col">
           <div class="cv-field">
             <label class="cv-lbl" for="cv-name">Your Name</label>
@@ -1673,7 +1714,7 @@ function closeProjModal(e){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCert();closeProj();}});
 
-/* form handled by FormSubmit.co — no JS needed */
+/* form handled by Formspree — no JS needed */
 </script>
 </body>
 </html>
