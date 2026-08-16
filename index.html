@@ -9,7 +9,7 @@
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4a189f820ec1452c8c636a6b0f7e5f8d"}'></script><!-- End Cloudflare Web Analytics -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
   <style>
 /* ── TOKENS ─────────────────────────────────────── */
 :root {
@@ -31,6 +31,8 @@
   --f-serif:  'Instrument Serif', Georgia, serif;
   --pad:      clamp(1.5rem, 9.375vw, 9rem);  /* ≈ 1.5 inch at 1536px */
   --ease:     cubic-bezier(.4,0,.2,1);
+  --f-mono:   'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --code-bg:  #fbfaf7;
 }
 [data-theme="dark"] {
   --bg:       #111111;
@@ -46,6 +48,7 @@
   --ac2:      #ffa94d;
   --ac3:      #38d9a9;
   --ac4:      #da77f2;
+  --code-bg:  #171717;
 }
 
 /* ── RESET ──────────────────────────────────────── */
@@ -844,6 +847,106 @@ footer {
 .case-txt{font-size:0.82rem;color:var(--muted);line-height:1.68}
 .case-txt strong{color:var(--tx2);font-weight:600}
 @media(max-width:700px){.cases-grid{grid-template-columns:1fr}}
+
+/* ── STACK.YAML ─────────────────────────────────── */
+.yml-wrap{border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  background:var(--code-bg);box-shadow:0 1px 2px rgba(0,0,0,.03),0 8px 28px -18px rgba(0,0,0,.22);
+  max-width:640px;margin-inline:auto;
+  /* box is themed as the inverse of the page: dark box on light page, light box on dark page */
+  --code-bg:#171717;--bg2:#1c1c1c;--border:#2c2c2c;--border2:#3c3c3c;
+  --muted:#888888;--dim:#6a6a6a;--ac1:#748ffc;--ac2:#ffa94d;--ac3:#38d9a9}
+[data-theme="dark"] .yml-wrap{
+  --code-bg:#fbfaf7;--bg2:#f0ede6;--border:#e3ded7;--border2:#c4bfb6;
+  --muted:#656565;--dim:#9a9a9a;--ac1:#3b5bdb;--ac2:#e07b39;--ac3:#099268}
+.yml-bar{display:flex;align-items:center;gap:0.7rem;padding:0.65rem 1rem;
+  background:var(--bg2);border-bottom:1px solid var(--border)}
+.yml-dots{display:flex;gap:0.36rem}
+.yml-dots i{width:10px;height:10px;border-radius:50%;display:block;opacity:.75}
+.yml-file{font-family:var(--f-mono);font-size:0.74rem;font-weight:500;color:var(--muted)}
+.yml-note{margin-left:auto;display:flex;align-items:center;gap:.75rem}
+.yml-meta{font-family:var(--f-mono);font-size:0.68rem;color:var(--dim);display:none}
+.yml-copy{font-family:var(--f-mono);font-size:0.68rem;font-weight:500;color:var(--muted);
+  background:transparent;border:1px solid var(--border2);border-radius:6px;padding:0.2rem 0.55rem;
+  cursor:pointer;transition:all .2s var(--ease)}
+.yml-copy:hover{color:var(--ac1);border-color:var(--ac1)}
+.yml-scroll{overflow-x:auto;overflow-y:hidden;max-width:100%}
+.yml-code{font-family:var(--f-mono);font-size:0.72rem;line-height:1.82;padding:1rem 0 1.2rem;
+  min-width:max-content;counter-reset:ln}
+.yl{display:block;white-space:pre;position:relative;padding:0 1.15rem 0 4.3rem;min-height:1.95em;
+  transition:background .16s var(--ease)}
+.yl::before{counter-increment:ln;content:counter(ln);position:absolute;left:0;top:0;width:3.15rem;
+  text-align:right;color:var(--dim);opacity:.55;font-size:0.7rem;user-select:none}
+.yl-i:hover{background:color-mix(in srgb,var(--ac1) 6%,transparent)}
+.yl-i:hover::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--ac1)}
+.yc{color:var(--dim);font-style:italic}
+.yt{color:var(--ac2);font-weight:700}
+.yk{color:var(--ac1);font-weight:500}
+.yp{color:var(--muted)}
+.yv{color:var(--ac3)}
+.yml-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:1.4rem;margin-top:1.15rem;font-size:0.76rem;color:var(--muted)}
+.yml-legend span{display:flex;align-items:center;gap:.45rem}
+.yml-legend i{width:9px;height:9px;border-radius:2px;display:block}
+
+/* ── CREDENTIALS ────────────────────────────────── */
+.cred-strip{display:flex;flex-wrap:wrap;border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;margin-bottom:2.1rem;background:var(--surface)}
+.cred-stat{flex:1 1 150px;padding:1rem 1.25rem;border-right:1px solid var(--border)}
+.cred-stat:last-child{border-right:none}
+.cred-stat-n{font-family:var(--f-disp);font-size:1.7rem;font-weight:800;line-height:1;color:var(--tx)}
+.cred-stat-l{font-size:0.72rem;color:var(--muted);margin-top:.3rem}
+.cred-tier{font-family:var(--f-disp);font-size:0.66rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--dim);margin:1.9rem 0 .3rem;display:flex;align-items:center;gap:.8rem}
+.cred-tier::after{content:'';flex:1;height:1px;background:var(--border)}
+.cred-tier.first{margin-top:0}
+.cred-row{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1rem;
+  padding:0.95rem 0.6rem 0.95rem 0.2rem;border-bottom:1px solid var(--border);
+  text-decoration:none;color:inherit;transition:all .18s var(--ease);border-radius:6px}
+.cred-row:hover{background:var(--bg2);padding-left:.75rem;padding-right:.75rem}
+.cred-dot{width:8px;height:8px;border-radius:50%}
+.cred-main{min-width:0}
+.cred-name{display:block;font-family:var(--f-disp);font-weight:700;font-size:0.94rem;color:var(--tx);line-height:1.35}
+.cred-meta{display:block;font-size:0.76rem;color:var(--muted);margin-top:.1rem}
+.cred-code{font-family:var(--f-mono);font-size:0.68rem;color:var(--dim);
+  border:1px solid var(--border);border-radius:5px;padding:.14rem .45rem;white-space:nowrap}
+.cred-verify{font-family:var(--f-disp);font-size:0.74rem;font-weight:700;color:var(--muted);
+  white-space:nowrap;transition:color .18s var(--ease)}
+.cred-row:hover .cred-verify{color:var(--ac1)}
+
+/* ── RECOGNITION ────────────────────────────────── */
+.awd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:1.1rem}
+.awd{position:relative;border:1px solid var(--border);border-radius:14px;background:var(--surface);
+  padding:1.5rem 1.4rem 1.4rem;overflow:hidden;transition:all .22s var(--ease)}
+.awd:hover{border-color:color-mix(in srgb,var(--tc) 45%,transparent);transform:translateY(-3px);
+  box-shadow:0 12px 30px -20px rgba(0,0,0,.35)}
+.awd::before{content:'';position:absolute;inset:0 auto 0 0;width:3px;background:var(--tc)}
+.awd-yr{font-family:var(--f-mono);font-size:0.72rem;font-weight:500;letter-spacing:.06em;
+  color:var(--dim);position:absolute;top:1.6rem;right:1.4rem;pointer-events:none}
+.awd-tag{display:inline-block;font-family:var(--f-disp);font-size:0.62rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.11em;padding:.24rem .6rem;border-radius:999px;
+  background:color-mix(in srgb,var(--tc) 12%,transparent);color:var(--tc);
+  border:1px solid color-mix(in srgb,var(--tc) 26%,transparent);margin-bottom:.85rem}
+.awd-name{font-family:var(--f-disp);font-size:1.06rem;font-weight:800;color:var(--tx);
+  line-height:1.28;margin-bottom:.3rem}
+.awd-org{font-size:0.76rem;color:var(--dim);margin-bottom:.75rem}
+.awd-desc{font-size:0.83rem;color:var(--muted);line-height:1.7}
+
+@media(min-width:720px){ .yml-meta{display:block} }
+@media(max-width:860px){
+  .yml-wrap{position:relative}
+  .yml-wrap::after{content:'';position:absolute;top:2.6rem;right:0;bottom:0;width:36px;
+    background:linear-gradient(to right,transparent,var(--code-bg));pointer-events:none}
+  .yml-code{font-size:0.72rem}
+}
+@media(max-width:620px){
+  .cred-row{grid-template-columns:auto 1fr;gap:.7rem}
+  .cred-code,.cred-verify{grid-column:2;justify-self:start;margin-top:.35rem}
+  .cred-verify{color:var(--ac1)}
+}
+
+/* pre-existing mobile overflow: long unbreakable contact strings set the grid min-content width */
+.contact-inner>*{min-width:0}
+.cl-val,.cl{overflow-wrap:anywhere}
+
   </style>
 </head>
 <body>
@@ -855,6 +958,7 @@ footer {
     <li><a href="#experience">Experience</a></li>
     <li><a href="#cases">Cases</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#awards">Awards</a></li>
     <li><a href="#certificates">Certs</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Stack</a></li>
@@ -1020,8 +1124,8 @@ footer {
             <li>Administered <strong>4 Azure production subscriptions</strong> supporting 150–200 mixed Windows/Linux VMs across compute, networking, identity, monitoring, and backup operations for dev, staging, and production environments.</li>
             <li>Owned <strong>P1/P2 incident response</strong> through ServiceNow — triage, root-cause analysis, stakeholder updates, escalation coordination, resolution tracking, and post-incident documentation for outages affecting <strong>150+ servers</strong>.</li>
             <li>Diagnosed recurring bulk VM outages affecting <strong>50–60 VMs and generating 200+ tickets</strong> by correlating impacted systems to a shared Azure resource group; escalated telemetry-backed findings to <strong>Microsoft Tier-3</strong>, contributing to datacenter-side remediation and environment stabilization within 2 days.</li>
-            <li>Coordinated Windows VM recovery during the <strong>July 2024 CrowdStrike outage</strong> using Microsoft-issued ISO recovery procedures, supporting restoration of affected managed VMs while live incident bridges were still active. <span class="badge badge-fill">DXC Q3 Winner FY24</span> <span class="badge badge-fill">DXC Recognition Grow 2024</span></li>
-            <li>Supported disaster recovery validation exercises using snapshots, backups, and restoration workflows; contributed to <strong>100% service restoration</strong> with zero client-facing downtime.</li>
+            <li>Coordinated Windows VM recovery during the <strong>July 2024 CrowdStrike outage</strong> using Microsoft-issued ISO recovery procedures, supporting restoration of affected managed VMs while live incident bridges were still active.</li>
+            <li>Supported disaster recovery validation exercises using snapshots, backups, and restoration workflows; contributed to <strong>100% service restoration</strong> with zero client-facing downtime. <span class="badge badge-fill">DXC Q3 Winner FY24</span> <span class="badge badge-fill">DXC Recognition Grow 2024</span></li>
             <li>Automated VM provisioning checks, patch validation, and health-check workflows with <strong>PowerShell</strong>, saving approximately <strong>5 hours/week</strong> of manual team effort.</li>
             <li>Authored operational runbooks, SOPs, and troubleshooting documentation in <strong>Confluence</strong>; improved repeat-incident handling and reduced MTTR for recurring patterns by approximately <strong>40%</strong>.</li>
             <li>Served as <strong>KT lead</strong> for incoming engineers, onboarding teammates on production environments, incident workflows, runbooks, and escalation procedures alongside normal operations work.</li>
@@ -1106,11 +1210,42 @@ footer {
         </div>
         <div class="case-row">
           <div class="case-lbl">Result</div>
-          <div class="case-txt">Restored affected managed Windows VM services during the active incident window. Recognized with <span class="badge badge-fill">DXC Q3 Winner FY24</span> <span class="badge badge-fill">DXC Recognition Grow 2024</span>.</div>
+          <div class="case-txt">Restored affected managed Windows VM services during the active incident window.</div>
         </div>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ── RECOGNITION ───────────────────────────────── -->
+<section id="awards" class="sec">
+  <div class="sec-label">Recognition</div>
+  <h2 class="sec-head rev">Awarded for <em>the calls made under pressure.</em></h2>
+  <p class="sec-sub rev d1">Recognition earned at DXC Technology across enterprise Azure managed services for insurance-sector clients.</p>
+
+  <div class="awd-grid">
+    <div class="awd rev d1" style="--tc:var(--ac2)">
+      <div class="awd-yr">2024</div>
+      <div class="awd-tag">Individual Award</div>
+      <div class="awd-name">DXC Q3 Winner &mdash; FY24</div>
+      <div class="awd-org">DXC Technology</div>
+      <div class="awd-desc">Awarded for disaster recovery exercises delivered with <strong>100% service restoration and zero client-facing downtime</strong> across the managed Azure estate.</div>
+    </div>
+    <div class="awd rev d2" style="--tc:var(--ac3)">
+      <div class="awd-yr">2024</div>
+      <div class="awd-tag">Recognition Program</div>
+      <div class="awd-name">DXC Recognition &mdash; Grow 2024</div>
+      <div class="awd-org">DXC Technology</div>
+      <div class="awd-desc">Recognised for sustained contribution to recovery readiness and knowledge transfer &mdash; authoring the runbooks and SOPs that cut MTTR on recurring incidents by roughly <strong>40%</strong>.</div>
+    </div>
+    <div class="awd rev d3" style="--tc:var(--ac1)">
+      <div class="awd-yr">2023</div>
+      <div class="awd-tag">Career Progression</div>
+      <div class="awd-name">Promoted to Cloud Support Engineer, Analyst 2</div>
+      <div class="awd-org">DXC Technology</div>
+      <div class="awd-desc">Moved up from Associate Professional Software Engineer within <strong>18 months</strong>, taking end-to-end ownership of P1/P2 incident response across four production subscriptions.</div>
+    </div>
   </div>
 </section>
 
@@ -1158,41 +1293,20 @@ footer {
 <section id="certificates" class="sec">
   <div class="sec-label">Certifications</div>
   <h2 class="sec-head rev">Eight credentials, <em>three clouds.</em></h2>
-  <p style="font-size:0.82rem;color:var(--dim);margin-bottom:1.6rem" class="rev d1">Click any card to verify the credential.</p>
+  <p class="sec-sub rev d1">Every credential below links straight to the issuer's verification page &mdash; no screenshots, no badges I can't prove.</p>
 
-  <div class="certs-grid rev d2">
-    <div class="cert-card" onclick="openCert('AWS Solutions Architect – Associate','Amazon Web Services','https://cp.certmetrics.com/amazon/en/public/verify/credential/b9d8ddcfe40944398c8400340fd53dcd')">
-      <div class="cert-dot" style="background:var(--ac2)"></div>
-      <div><div class="cert-name">AWS Solutions Architect – Associate</div><div class="cert-issuer">Amazon Web Services</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('AWS AI Practitioner (AIF-C01)','Amazon Web Services','https://cp.certmetrics.com/amazon/en/public/verify/credential/9bd13da59d5940e6ba649c6657aa2360')">
-      <div class="cert-dot" style="background:var(--ac2)"></div>
-      <div><div class="cert-name">AWS AI Practitioner (AIF-C01)</div><div class="cert-issuer">Amazon Web Services</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('AWS Cloud Practitioner','Amazon Web Services','https://cp.certmetrics.com/amazon/en/public/verify/credential/P59L5EK2WM141F52')">
-      <div class="cert-dot" style="background:var(--ac2)"></div>
-      <div><div class="cert-name">AWS Cloud Practitioner</div><div class="cert-issuer">Amazon Web Services</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('AZ-104 Azure Administrator Associate','Microsoft','https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/b0db23bd4cae25bf')">
-      <div class="cert-dot" style="background:var(--ac1)"></div>
-      <div><div class="cert-name">AZ-104 Azure Administrator Associate</div><div class="cert-issuer">Microsoft</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('AZ-900 Azure Fundamentals','Microsoft','https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/2ef2ce50c26ebfe2')">
-      <div class="cert-dot" style="background:var(--ac1)"></div>
-      <div><div class="cert-name">AZ-900 Azure Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('DP-900 Azure Data Fundamentals','Microsoft','https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/c229f83cee0278d4')">
-      <div class="cert-dot" style="background:var(--ac1)"></div>
-      <div><div class="cert-name">DP-900 Azure Data Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('HashiCorp Certified: Terraform Associate (003)','HashiCorp','https://www.credly.com/badges/5df00650-62e2-4f97-996e-a90a096900dd/public_url')">
-      <div class="cert-dot" style="background:var(--ac4)"></div>
-      <div><div class="cert-name">HashiCorp Certified: Terraform Associate (003)</div><div class="cert-issuer">HashiCorp</div></div>
-    </div>
-    <div class="cert-card" onclick="openCert('OCI 2024 Certified Foundations Associate','Oracle','https://catalog-education.oracle.com/ords/certview/sharebadge?id=F0B59789FC763D5C510680C2E954F4A0F30738CBB16CB51DEB1F39EF3A3A2385')">
-      <div class="cert-dot" style="background:var(--ac3)"></div>
-      <div><div class="cert-name">OCI 2024 Certified Foundations Associate</div><div class="cert-issuer">Oracle</div></div>
-    </div>
+  <div class="cred-strip rev d1">
+    <div class="cred-stat"><div class="cred-stat-n">8</div><div class="cred-stat-l">Credentials held</div></div>
+    <div class="cred-stat"><div class="cred-stat-n">3</div><div class="cred-stat-l">Cloud providers</div></div>
+    <div class="cred-stat"><div class="cred-stat-n">3</div><div class="cred-stat-l">Associate level</div></div>
+    <div class="cred-stat"><div class="cred-stat-n">100%</div><div class="cred-stat-l">Independently verifiable</div></div>
+  </div>
+
+  <div class="rev d2">
+    <div class="cred-tier first">Associate level</div>
+    <div id="credA"></div>
+    <div class="cred-tier">Foundational</div>
+    <div id="credF"></div>
   </div>
 </section>
 
@@ -1277,151 +1391,33 @@ footer {
 <!-- ── SKILLS & STACK ────────────────────────────── -->
 <section id="skills" class="sec">
   <div class="sec-label">Skills &amp; Stack</div>
-  <h2 class="sec-head rev">Infrastructure toolkit, <em>from production support to project builds.</em></h2>
-  <p class="sec-sub rev d1">Strongest hands-on experience is in Azure production operations, incident response, monitoring, and automation. AWS, Terraform, and cloud-native tools are shown through project-based infrastructure work.</p>
+  <h2 class="sec-head rev">Infrastructure toolkit, <em>declared as config.</em></h2>
+  <p class="sec-sub rev d1">Split by evidence, not by ambition. <strong>production</strong> is what I ran at enterprise scale for three years. <strong>projects</strong> is what I built in grad school and on my own. <strong>teaching</strong> is what I now grade other people on.</p>
 
-  <!-- Core Strengths pills -->
-  <div class="strengths-row rev d2">
+  <div class="strengths-row rev d1">
     <span class="strength-pill">Azure Production Operations</span>
     <span class="strength-pill">Incident Response</span>
     <span class="strength-pill">Infrastructure as Code</span>
     <span class="strength-pill">Cloud Automation</span>
   </div>
 
-  <div class="bento-2 rev d2">
-
-    <!-- Production tile -->
-    <div class="btile" style="--tc:var(--ac1)">
-      <div class="btile-head">⚡ Production / Hands-On</div>
-      <div class="btile-body-wrap collapsed">
-      <div class="btile-body">
-        <div class="btile-group">
-          <div class="btile-group-label">Azure</div>
-          <div class="btile-tags">
-            <span class="btag btag-hi">Azure VMs</span>
-            <span class="btag btag-hi">VNets</span>
-            <span class="btag btag-hi">NSGs</span>
-            <span class="btag btag-hi">VPN Gateway</span>
-            <span class="btag btag-hi">RBAC</span>
-            <span class="btag btag-hi">Azure Monitor</span>
-            <span class="btag btag-hi">ARM Templates</span>
-            <span class="btag btag-hi">Windows Server</span>
-            <span class="btag btag-hi">Linux</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">IaC &amp; Scripting</div>
-          <div class="btile-tags">
-            <span class="btag btag-hi">Terraform</span>
-            <span class="btag btag-hi">GitHub Actions</span>
-            <span class="btag btag-hi">PowerShell</span>
-            <span class="btag btag-hi">Python</span>
-            <span class="btag btag-hi">Bash</span>
-            <span class="btag btag-hi">Linux CLI</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Monitoring &amp; IR</div>
-          <div class="btile-tags">
-            <span class="btag btag-hi">Azure Monitor</span>
-            <span class="btag btag-hi">ServiceNow ITSM</span>
-            <span class="btag btag-hi">Confluence Runbooks</span>
-            <span class="btag btag-hi">CloudWatch</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Security</div>
-          <div class="btile-tags">
-            <span class="btag btag-hi">IAM</span>
-            <span class="btag btag-hi">RBAC</span>
-            <span class="btag btag-hi">NSGs</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Databases</div>
-          <div class="btile-tags">
-            <span class="btag btag-hi">PostgreSQL</span>
-            <span class="btag btag-hi">RDS Multi-AZ</span>
-          </div>
-        </div>
-      </div>
-      <div class="btile-fade"></div>
-      <button class="btile-showmore" onclick="toggleSkillTile(this)">
-        Show more <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
+  <div class="yml-wrap rev d2">
+    <div class="yml-bar">
+      <div class="yml-dots"><i style="background:#e07b39"></i><i style="background:#d4b106"></i><i style="background:#099268"></i></div>
+      <span class="yml-file">stack.yaml</span>
+      <div class="yml-note">
+        <span class="yml-meta"># scoped by evidence &middot; not by keyword</span>
+        <button class="yml-copy" onclick="copyStack(this)">copy</button>
       </div>
     </div>
+    <div class="yml-scroll"><div class="yml-code" id="ymlcode"><div class="yl"><span class="yc"># simran mohapatra &mdash; cloud engineering stack</span></div><div class="yl"><span class="yc"># every entry below is something I have actually touched</span></div><div class="yl"> </div><div class="yl yl-i"><span class="yt">production</span><span class="yp">:</span>                  <span class="yc"># 3+ yrs &middot; DXC &middot; 4 Azure subscriptions &middot; 150&ndash;200 VMs</span></div><div class="yl yl-i">  <span class="yk">azure</span><span class="yp">:          [</span><span class="yv">vm, vnet, nsg, vpn-gateway, rbac, azure-monitor, arm-templates</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">os</span><span class="yp">:             [</span><span class="yv">windows-server, linux</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">automation</span><span class="yp">:     [</span><span class="yv">powershell, bash, python</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">operations</span><span class="yp">:     [</span><span class="yv">servicenow-itsm, confluence, runbooks, change-control</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">incident</span><span class="yp">:       [</span><span class="yv">p1-p2-ownership, rca, dr-validation, microsoft-tier-3</span><span class="yp">]</span></div><div class="yl"> </div><div class="yl yl-i"><span class="yt">projects</span><span class="yp">:</span>                    <span class="yc"># grad school &middot; hackathon &middot; personal builds</span></div><div class="yl yl-i">  <span class="yk">aws_compute</span><span class="yp">:    [</span><span class="yv">ec2, eks, ecs-fargate, lambda, alb, asg, efs, s3</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">aws_security</span><span class="yp">:   [</span><span class="yv">iam, kms, waf, acm, secrets-manager, security-groups</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">iac</span><span class="yp">:            [</span><span class="yv">terraform, cloudformation, kustomize</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">ci_cd</span><span class="yp">:          [</span><span class="yv">github-actions, docker, ecr, trivy</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">kubernetes</span><span class="yp">:     [</span><span class="yv">eks, keda, karpenter, helm, kubectl, eksctl, network-policies</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">observability</span><span class="yp">:  [</span><span class="yv">prometheus, grafana, alertmanager, cloudwatch, cloudtrail</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">databases</span><span class="yp">:      [</span><span class="yv">postgresql, mongodb, neo4j, sqlite</span><span class="yp">]</span></div><div class="yl yl-i">  <span class="yk">ai_integration</span><span class="yp">: [</span><span class="yv">claude-api, tool-use, function-calling, streaming</span><span class="yp">]</span></div><div class="yl"> </div><div class="yl yl-i"><span class="yt">teaching</span><span class="yp">:</span>                    <span class="yc"># Fall 2026 &middot; UMD graduate course</span></div><div class="yl yl-i">  <span class="yk">linux_sysadmin</span><span class="yp">: [</span><span class="yv">shell-scripting, permissions, systemd, filesystems, logging</span><span class="yp">]</span></div><div class="yl"> </div><div class="yl"><span class="yc"># principle: evidence_before_hypothesis</span></div></div></div>
+  </div>
 
-    <!-- Project Exposure tile -->
-    <div class="btile" style="--tc:var(--ac3)">
-      <div class="btile-head">⎈ Project Exposure</div>
-      <div class="btile-body-wrap collapsed">
-      <div class="btile-body">
-        <div class="btile-group">
-          <div class="btile-group-label">AWS</div>
-          <div class="btile-tags">
-            <span class="btag">EC2</span>
-            <span class="btag">ECS Fargate</span>
-            <span class="btag">S3</span>
-            <span class="btag">Lambda</span>
-            <span class="btag">RDS</span>
-            <span class="btag">ALB / ASG</span>
-            <span class="btag">SNS / SQS</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">IaC</div>
-          <div class="btile-tags">
-            <span class="btag">CloudFormation</span>
-            <span class="btag">ARM Templates</span>
-            <span class="btag">ECR</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Cloud-Native</div>
-          <div class="btile-tags">
-            <span class="btag">Docker</span>
-            <span class="btag">Kubernetes</span>
-            <span class="btag">KEDA</span>
-            <span class="btag">Helm</span>
-            <span class="btag">kubectl</span>
-            <span class="btag">eksctl</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Monitoring</div>
-          <div class="btile-tags">
-            <span class="btag">CloudTrail</span>
-            <span class="btag">VPC Flow Logs</span>
-            <span class="btag">SNS Alarms</span>
-            <span class="btag">Prometheus</span>
-            <span class="btag">Grafana</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Security</div>
-          <div class="btile-tags">
-            <span class="btag">Security Groups</span>
-            <span class="btag">Secrets Manager</span>
-            <span class="btag">KMS</span>
-          </div>
-        </div>
-        <div class="btile-group">
-          <div class="btile-group-label">Databases</div>
-          <div class="btile-tags">
-            <span class="btag">MongoDB</span>
-            <span class="btag">SQLite</span>
-            <span class="btag">Neo4j</span>
-          </div>
-        </div>
-      </div>
-      <div class="btile-fade"></div>
-      <button class="btile-showmore" onclick="toggleSkillTile(this)">
-        Show more <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      </div>
-    </div>
-
+  <div class="yml-legend rev d3">
+    <span><i style="background:var(--ac2)"></i> scope</span>
+    <span><i style="background:var(--ac1)"></i> domain</span>
+    <span><i style="background:var(--ac3)"></i> tooling</span>
+    <span style="color:var(--dim)">hover a line to highlight</span>
   </div>
 </section>
 
@@ -1588,16 +1584,6 @@ footer {
   <a href="#hero" class="ft-top">↑ Back to top</a>
 </footer>
 
-<!-- ── CERT MODAL ───────────────────────────────── -->
-<div class="modal-bg" id="certModal" onclick="closeCertModal(event)">
-  <div class="modal">
-    <button class="modal-x" onclick="closeCert()">×</button>
-    <div class="modal-t" id="mCertName"></div>
-    <div class="modal-s" id="mCertIssuer"></div>
-    <a class="modal-open" id="mCertLink" href="#" target="_blank" rel="noopener">Verify credential ↗</a>
-  </div>
-</div>
-
 <!-- ── PROJECT MODAL ─────────────────────────────── -->
 <div class="modal-bg" id="projModal" onclick="closeProjModal(event)">
   <div class="modal modal-proj">
@@ -1694,22 +1680,6 @@ const ro=new IntersectionObserver(es=>{
 },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rev').forEach(r=>ro.observe(r));
 
-/* ── cert modal ─────────────────────────────────── */
-function openCert(n,i,url){
-  document.getElementById('mCertName').textContent=n;
-  document.getElementById('mCertIssuer').textContent=i;
-  document.getElementById('mCertLink').href=url||'#';
-  document.getElementById('certModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeCert(){
-  document.getElementById('certModal').classList.remove('open');
-  document.body.style.overflow='';
-}
-function closeCertModal(e){
-  if(e.target===document.getElementById('certModal'))closeCert();
-}
-
 /* ── project modal ──────────────────────────────── */
 const PROJECTS=[
   {
@@ -1780,13 +1750,36 @@ function closeProj(){
 function closeProjModal(e){
   if(e.target===document.getElementById('projModal'))closeProj();
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCert();closeProj();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProj();});
 
-/* ── skill tile show-more ───────────────────────── */
-function toggleSkillTile(btn){
-  const wrap=btn.closest('.btile-body-wrap');
-  const collapsed=wrap.classList.toggle('collapsed');
-  btn.childNodes[0].textContent=collapsed?'Show more ':'Show less ';
+
+/* ── credentials · fill d:'' with dates e.g. 'Jun 2025 → Jun 2028' ── */
+const CERTS_ASSOCIATE=[
+  {n:'AWS Certified Solutions Architect – Associate',i:'Amazon Web Services',c:'SAA-C03',col:'var(--ac2)',d:'',u:'https://cp.certmetrics.com/amazon/en/public/verify/credential/b9d8ddcfe40944398c8400340fd53dcd'},
+  {n:'Microsoft Certified: Azure Administrator Associate',i:'Microsoft',c:'AZ-104',col:'var(--ac1)',d:'',u:'https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/b0db23bd4cae25bf'},
+  {n:'HashiCorp Certified: Terraform Associate',i:'HashiCorp',c:'003',col:'var(--ac4)',d:'',u:'https://www.credly.com/badges/5df00650-62e2-4f97-996e-a90a096900dd/public_url'}
+];
+const CERTS_FOUNDATION=[
+  {n:'AWS Certified AI Practitioner',i:'Amazon Web Services',c:'AIF-C01',col:'var(--ac2)',d:'',u:'https://cp.certmetrics.com/amazon/en/public/verify/credential/9bd13da59d5940e6ba649c6657aa2360'},
+  {n:'AWS Certified Cloud Practitioner',i:'Amazon Web Services',c:'CLF-C02',col:'var(--ac2)',d:'',u:'https://cp.certmetrics.com/amazon/en/public/verify/credential/P59L5EK2WM141F52'},
+  {n:'Microsoft Certified: Azure Fundamentals',i:'Microsoft',c:'AZ-900',col:'var(--ac1)',d:'',u:'https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/2ef2ce50c26ebfe2'},
+  {n:'Microsoft Certified: Azure Data Fundamentals',i:'Microsoft',c:'DP-900',col:'var(--ac1)',d:'',u:'https://learn.microsoft.com/en-us/users/simranmohapatra-8988/credentials/c229f83cee0278d4'},
+  {n:'Oracle Cloud Infrastructure 2024 Certified Foundations Associate',i:'Oracle',c:'1Z0-1085-24',col:'var(--ac3)',d:'',u:'https://catalog-education.oracle.com/ords/certview/sharebadge?id=F0B59789FC763D5C510680C2E954F4A0F30738CBB16CB51DEB1F39EF3A3A2385'}
+];
+function credRow(c){
+  return `<a class="cred-row" href="${c.u}" target="_blank" rel="noopener">
+    <span class="cred-dot" style="background:${c.col}"></span>
+    <span class="cred-main"><span class="cred-name">${c.n}</span><span class="cred-meta">${c.i}${c.d?' · '+c.d:''}</span></span>
+    <span class="cred-code">${c.c}</span>
+    <span class="cred-verify">Verify ↗</span>
+  </a>`;
+}
+document.getElementById('credA').innerHTML=CERTS_ASSOCIATE.map(credRow).join('');
+document.getElementById('credF').innerHTML=CERTS_FOUNDATION.map(credRow).join('');
+
+function copyStack(b){
+  navigator.clipboard.writeText(document.getElementById('ymlcode').innerText)
+    .then(()=>{b.textContent='copied';setTimeout(()=>b.textContent='copy',1400)});
 }
 
 /* form handled by Formspree — no JS needed */
