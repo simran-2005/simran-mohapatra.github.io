@@ -67,16 +67,38 @@ img{max-width:100%;display:block}
 
 /* ── NAV ────────────────────────────────────────── */
 nav {
-  position:sticky;top:0;z-index:200;
-  background:var(--bg);
-  background:color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-  padding:0 var(--pad);
-  height:62px;
-  display:flex;align-items:center;gap:2rem;
-  transition:background .35s var(--ease);
+  position:fixed;
+  top:clamp(0.6rem,1.8vw,1.15rem);
+  left:50%;transform:translateX(-50%);
+  z-index:200;
+  width:max-content;max-width:calc(100% - 1.6rem);
+  background:color-mix(in srgb, var(--surface) 55%, transparent);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid color-mix(in srgb, var(--tx) 12%, transparent);
+  border-radius:999px;
+  padding:0.4rem 0.5rem 0.4rem 1.15rem;
+  height:auto;
+  display:flex;align-items:center;gap:1.4rem;
+  box-shadow:0 10px 34px -14px rgba(0,0,0,.4),
+             inset 0 1px 0 color-mix(in srgb,#fff 35%,transparent),
+             inset 0 -1px 0 color-mix(in srgb,#000 8%,transparent);
+  transition:background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+/* glass sheen / mirror highlight */
+nav::before {
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(150deg, color-mix(in srgb,#fff 22%,transparent) 0%, transparent 42%);
+  opacity:.7;
+}
+nav > * {position:relative;z-index:1}
+[data-theme="dark"] nav {
+  background:color-mix(in srgb, var(--surface) 60%, transparent);
+  box-shadow:0 10px 34px -12px rgba(0,0,0,.65),
+             inset 0 1px 0 color-mix(in srgb,#fff 12%,transparent);
+}
+[data-theme="dark"] nav::before {
+  background:linear-gradient(150deg, color-mix(in srgb,#fff 10%,transparent) 0%, transparent 45%);
 }
 .nav-brand {
   font-family:var(--f-disp);font-weight:800;
@@ -112,8 +134,9 @@ nav {
 
 /* ── HERO ───────────────────────────────────────── */
 #hero {
-  padding:5.5rem var(--pad) 5rem;
+  padding:6.5rem var(--pad) 5rem;
   border-bottom:1px solid var(--border);
+  scroll-margin-top:5rem;
 }
 .hero-inner {
   display:grid;
@@ -312,6 +335,7 @@ nav {
 .sec {
   padding:4.75rem var(--pad);
   border-bottom:1px solid var(--border);
+  scroll-margin-top:5rem;
 }
 .sec-label {
   font-family:var(--f-disp);
